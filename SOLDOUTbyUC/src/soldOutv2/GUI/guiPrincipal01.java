@@ -5,6 +5,7 @@ public class guiPrincipal01 extends javax.swing.JFrame {
 
     public guiPrincipal01() {
         initComponents();
+        holaMundo();
     }
 
     @SuppressWarnings("unchecked")
@@ -62,9 +63,7 @@ public class guiPrincipal01 extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
+ 
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -75,6 +74,10 @@ public class guiPrincipal01 extends javax.swing.JFrame {
         );
     }
 
+    public void holaMundo() {
+        System.out.println("HOLA MUNDO");
+    }
+        
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel lblBackground;
     private javax.swing.JLabel lblDashboard;
