@@ -6,6 +6,7 @@ public class guiPrincipal01 extends javax.swing.JFrame {
     public guiPrincipal01() {
         initComponents();
         holaMundo();
+        int ola;
     }
 
     @SuppressWarnings("unchecked")
