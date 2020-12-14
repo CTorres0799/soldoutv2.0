@@ -1,5 +1,6 @@
 package soldOutv2.GUI;
 
+import Metodos.Conexion;
 import Metodos.loadingBar;
 import java.awt.Color;
 import java.awt.Image; //periño

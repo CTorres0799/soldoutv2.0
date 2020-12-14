@@ -41,6 +41,7 @@ public class guiCaja extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        lblTotal = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCaja = new javax.swing.JTable();
         pnlBackground = new javax.swing.JPanel();
@@ -51,15 +52,23 @@ public class guiCaja extends javax.swing.JFrame {
 
         jPanel1.setPreferredSize(new java.awt.Dimension(250, 500));
 
+        lblTotal.setText("#total");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 350, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(172, Short.MAX_VALUE)
+                .addComponent(lblTotal)
+                .addGap(146, 146, 146))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 660, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(576, Short.MAX_VALUE)
+                .addComponent(lblTotal)
+                .addGap(68, 68, 68))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1530, 100, 350, 660));
@@ -160,6 +169,7 @@ public class guiCaja extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblBackground;
+    private javax.swing.JLabel lblTotal;
     private javax.swing.JPanel pnlBackground;
     static javax.swing.JTable tblCaja;
     // End of variables declaration//GEN-END:variables

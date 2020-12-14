@@ -1,6 +1,10 @@
 package soldOutv2.GUI;
 
+import Metodos.Conexion;
 import com.sun.xml.internal.ws.api.streaming.XMLStreamReaderFactory;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.Stack;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -26,9 +30,15 @@ public class guiMenu extends javax.swing.JFrame {
     double Cambio; //pedriño
     String importe;
     String printTotal;
+<<<<<<< Updated upstream
     String printCambio;//pedriño
     
+=======
+    Conexion cc = new Conexion();
+    Connection con = cc.obtenerConexion();
+>>>>>>> Stashed changes
 
+    
     public guiMenu() {
         total = 0;
         sub_total = 0.0;
@@ -36,6 +46,7 @@ public class guiMenu extends javax.swing.JFrame {
         Recibi = 0.0; //pedriño
         Cambio = 0.0; //pedriño
         initComponents();
+        consultaBD();
         //añadirCheckbox(0, tblProductos);
         Image icon = new ImageIcon(getClass().getResource("/IMG/413.jpg")).getImage(); //pedriño
         setIconImage(icon); //pedriño
@@ -523,14 +534,14 @@ public class guiMenu extends javax.swing.JFrame {
                 btnAñadirActionPerformed(evt);
             }
         });
-        pnlBackground.add(btnAñadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 520, 90, 30));
+        pnlBackground.add(btnAñadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 510, 90, 30));
 
         lblDashOFF.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 lblDashOFFMouseMoved(evt);
             }
         });
-        pnlBackground.add(lblDashOFF, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, -20, 1550, 1100));
+        pnlBackground.add(lblDashOFF, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 0, 1470, 1080));
 
         lblBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/gui_PRINCIPAL01v2.jpg"))); // NOI18N
         pnlBackground.add(lblBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -564,6 +575,36 @@ public class guiMenu extends javax.swing.JFrame {
     //PROGRAMACION--METODOS\\
     private TableRowSorter Filtrado;
 
+    public void consultaBD() {
+        
+        String  [ ] titulos = {"idAlimento","nombre","descripcion","precio"};
+        String  [ ] registros =  new String [4];
+        
+        DefaultTableModel modelos = new DefaultTableModel(null,titulos);
+        
+        String sql = "select * from menu";
+        
+        try {
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            
+            while (rs.next()) {                
+                registros[0] = rs.getString("idAlimento");
+                registros[1] = rs.getString("nombre");
+                registros[2] = rs.getString("descripcion");
+                registros[3] = rs.getString("precio");
+                
+                modelos.addRow(registros);
+            }
+            tblKalis.setModel(modelos);
+        } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, " Error:" + e.getMessage()
+                    + " contacte a su supervisor ", " Error Interno 07EC4TCH ",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }
+    
     public void dashFunctionON() {
         pnlDash.setVisible(false);
         pnlDash.setEnabled(false);
@@ -571,6 +612,8 @@ public class guiMenu extends javax.swing.JFrame {
         lblDashOFF.setEnabled(true);
         pnlDashBoard.setVisible(true);
         pnlDashBoard.setEnabled(true);
+        
+   
 
     }
 
