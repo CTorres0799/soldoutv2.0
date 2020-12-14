@@ -2,6 +2,8 @@ package soldOutv2.GUI;
 
 import Metodos.loadingBar;
 import java.awt.Color;
+import java.awt.Image; //periño
+import javax.swing.ImageIcon; //pedriño
 
 public class SplashScreen extends javax.swing.JFrame {
 
@@ -13,8 +15,10 @@ public class SplashScreen extends javax.swing.JFrame {
         pgsCargando.setBackground(Color.yellow);
         hilo.start();
         hilo = null;
+        Image icon = new ImageIcon (getClass().getResource("/IMG/413.jpg")).getImage(); //pedriño
+        setIconImage(icon); //pedriño
     }
-
+ 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

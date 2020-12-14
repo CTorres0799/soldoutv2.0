@@ -11,6 +11,8 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import javax.swing.text.TableView;
 import soldOutv2.GUI.guiCaja;
+import java.awt.Image; //pedriño
+import javax.swing.ImageIcon; //pedriño
 
 public class guiMenu extends javax.swing.JFrame {
     //FILTRADO ALIMENTOS//
@@ -20,15 +22,23 @@ public class guiMenu extends javax.swing.JFrame {
     static double total;
     double sub_total;
     double igv;
+    double Recibi; //pedriño
+    double Cambio; //pedriño
     String importe;
     String printTotal;
+    String printCambio;//pedriño
+    
 
     public guiMenu() {
         total = 0;
         sub_total = 0.0;
         igv = 0.0;
+        Recibi = 0.0; //pedriño
+        Cambio = 0.0; //pedriño
         initComponents();
         //añadirCheckbox(0, tblProductos);
+        Image icon = new ImageIcon(getClass().getResource("/IMG/413.jpg")).getImage(); //pedriño
+        setIconImage(icon); //pedriño
     }
 
     @SuppressWarnings("unchecked")
@@ -60,16 +70,25 @@ public class guiMenu extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         txtTotal = new javax.swing.JLabel();
         txfTotal = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        txfRecibi = new javax.swing.JTextField();
+        txfCambio = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        txfSubTotal = new javax.swing.JTextField();
         txfCantidad = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblKalis = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblCaja = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        btnTicket = new rsbuttom.RSButtonMetro();
         txfBuscador = new javax.swing.JTextField();
         btnAñadir = new rsbuttom.RSButtonMetro();
         lblDashOFF = new javax.swing.JLabel();
         lblBackground = new javax.swing.JLabel();
+        btnCalcular1 = new rsbuttom.RSButtonMetro();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1920, 1080));
@@ -317,16 +336,68 @@ public class guiMenu extends javax.swing.JFrame {
 
         txfTotal.setEditable(false);
         txfTotal.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
+        txfTotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txfTotalActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
+        jLabel1.setText("Recibi: ");
+
+        jLabel4.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
+        jLabel4.setText("Cambio: ");
+
+        txfRecibi.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
+        txfRecibi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txfRecibiActionPerformed(evt);
+            }
+        });
+
+        txfCambio.setEditable(false);
+        txfCambio.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
+        txfCambio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txfCambioActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
+        jLabel2.setText("SubTotal: ");
+
+        txfSubTotal.setEditable(false);
+        txfSubTotal.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
+        txfSubTotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txfSubTotalActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(703, Short.MAX_VALUE)
-                .addComponent(txtTotal)
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txfRecibi, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txfCambio, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 272, Short.MAX_VALUE)
+                        .addComponent(txtTotal)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txfTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txfTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txfSubTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(17, 17, 17))
         );
         jPanel2Layout.setVerticalGroup(
@@ -335,8 +406,16 @@ public class guiMenu extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtTotal)
-                    .addComponent(txfTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(78, Short.MAX_VALUE))
+                    .addComponent(txfTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel4)
+                    .addComponent(txfRecibi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txfCambio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txfSubTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
 
         pnlBackground.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 790, 880, -1));
@@ -373,7 +452,7 @@ public class guiMenu extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tblCaja);
 
-        pnlBackground.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 650, 890, 100));
+        pnlBackground.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 640, 890, 100));
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, java.awt.Color.white, java.awt.Color.white));
@@ -390,6 +469,29 @@ public class guiMenu extends javax.swing.JFrame {
         );
 
         pnlBackground.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 80, 1600, 170));
+
+        jPanel3.setPreferredSize(new java.awt.Dimension(250, 500));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 350, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 660, Short.MAX_VALUE)
+        );
+
+        pnlBackground.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1490, 320, 350, 660));
+
+        btnTicket.setText("Ticket ");
+        btnTicket.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTicketActionPerformed(evt);
+            }
+        });
+        pnlBackground.add(btnTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(1270, 750, -1, -1));
 
         txfBuscador.setBackground(new java.awt.Color(204, 204, 204));
         txfBuscador.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
@@ -432,6 +534,14 @@ public class guiMenu extends javax.swing.JFrame {
 
         lblBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/gui_PRINCIPAL01v2.jpg"))); // NOI18N
         pnlBackground.add(lblBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        btnCalcular1.setText("Calcular");
+        btnCalcular1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCalcular1ActionPerformed(evt);
+            }
+        });
+        pnlBackground.add(btnCalcular1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 750, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -566,7 +676,7 @@ public class guiMenu extends javax.swing.JFrame {
         int filaS = tblKalis.getSelectedRow(); //verificamos que algo se encuentre documentado
 
         try {
-            String idAlimento, Nombre, Descripcion, Precio, Cantidad;
+            String idAlimento, Nombre, Descripcion, Precio, Cantidad, efectivo;
             double calcular = 0.0, x = 0.0, igvs = 0.0;
             int cant = 0;
 
@@ -583,25 +693,38 @@ public class guiMenu extends javax.swing.JFrame {
                 Nombre = tblKalis.getValueAt(filaS, 1).toString();
                 Descripcion = tblKalis.getValueAt(filaS, 2).toString();
                 Precio = tblKalis.getValueAt(filaS, 3).toString();
-                Cantidad = txfCantidad.getText();
+                Cantidad = txfCantidad.getText(); 
+                efectivo = txfRecibi.getText();
+                
 
                 //CALCULOS;
                 x = (Double.parseDouble(Precio) * Integer.parseInt(Cantidad));
                 
                 importe = String.valueOf(x);
-                total = (Double.parseDouble(importe));
+                total = (Double.parseDouble(importe) + total);
                 printTotal = String.valueOf(total);
                 
-            
+                System.out.println(total);
+                
+                //Pedriño
+                Cambio = (Integer.parseInt(efectivo) - total);
+                printCambio = String.valueOf(Cambio);
+                
+                txfCambio.setText(printCambio);
+                //txfCambio.setText(Integer.toBinaryString((int) puta))
+                //hatasta aqui 
                 
                 txfTotal.setText(printTotal);
          
-
                 dm = (DefaultTableModel) tblCaja.getModel();
                 String filaElementos[] = {Cantidad, Nombre, Descripcion, Precio, importe};
                 dm.addRow(filaElementos);
 
                 txfCantidad.setText("");
+                
+                
+                /*Cambio = (total - Double.parseDouble(Recibi));
+                printCambio = String.ValueOf(Cambio);*/
 
                 //guiCaja extCobro = new guiCaja();
                 //extCobro.setVisible(true);
@@ -612,6 +735,30 @@ public class guiMenu extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_btnAñadirActionPerformed
+
+    private void txfTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfTotalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txfTotalActionPerformed
+
+    private void txfRecibiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfRecibiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txfRecibiActionPerformed
+
+    private void txfCambioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfCambioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txfCambioActionPerformed
+
+    private void txfSubTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfSubTotalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txfSubTotalActionPerformed
+
+    private void btnCalcular1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcular1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCalcular1ActionPerformed
+
+    private void btnTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTicketActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnTicketActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -649,11 +796,17 @@ public class guiMenu extends javax.swing.JFrame {
     private javax.swing.ButtonGroup btgCategorias;
     private rsbuttom.RSButtonMetro btnAñadir;
     private rsbuttom.RSButtonMetro btnCaja;
+    private rsbuttom.RSButtonMetro btnCalcular1;
     private rsbuttom.RSButtonMetro btnDash;
     private rsbuttom.RSButtonMetro btnInicio;
     private rsbuttom.RSButtonMetro btnMenu;
+    private rsbuttom.RSButtonMetro btnTicket;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel lblBackground;
@@ -677,7 +830,10 @@ public class guiMenu extends javax.swing.JFrame {
     private javax.swing.JTable tblCaja;
     private javax.swing.JTable tblKalis;
     private javax.swing.JTextField txfBuscador;
+    private javax.swing.JTextField txfCambio;
     private javax.swing.JTextField txfCantidad;
+    private javax.swing.JTextField txfRecibi;
+    private javax.swing.JTextField txfSubTotal;
     private javax.swing.JTextField txfTotal;
     private javax.swing.JLabel txtCantidad;
     private javax.swing.JLabel txtTotal;

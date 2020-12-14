@@ -5,6 +5,9 @@
  */
 package soldOutv2.GUI;
 
+import java.awt.Image; //pedriño
+import javax.swing.ImageIcon; //pedriño
+
 /**
  *
  * @author cristian
@@ -16,6 +19,8 @@ public class guiLogin extends javax.swing.JFrame {
      */
     public guiLogin() {
         initComponents();
+        Image icon = new ImageIcon(getClass().getResource("/IMG/413.jpg")).getImage();
+        setIconImage(icon);
     }
 
     /**

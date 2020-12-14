@@ -1,11 +1,14 @@
 package soldOutv2.GUI;
+import java.awt.Image; //pedriño
+import javax.swing.ImageIcon; //pedriño
 
 public class guiPrincipal01 extends javax.swing.JFrame {
 
     public guiPrincipal01() {
         initComponents();
+        Image icon = new ImageIcon(getClass().getResource("/IMG/413.jpg")).getImage(); //pedriño
+        setIconImage(icon); //pedriño
     }
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

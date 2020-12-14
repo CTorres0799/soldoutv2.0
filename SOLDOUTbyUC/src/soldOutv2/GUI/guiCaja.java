@@ -6,12 +6,17 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import sun.swing.table.DefaultTableCellHeaderRenderer;
 import soldOutv2.GUI.guiMenu;
+import java.awt.Image; //pedriño
+import javax.swing.ImageIcon; //pedriño
 
 public class guiCaja extends javax.swing.JFrame {
 
     public guiCaja() {
         initComponents();
         recolectorDatos();
+        Image icon = new ImageIcon(getClass().getResource("/IMG/413.jpg")).getImage();//pedriño
+        setIconImage(icon);//pedriño
+                
     }
     
     public JTable TablaCaja() {
@@ -57,7 +62,7 @@ public class guiCaja extends javax.swing.JFrame {
             .addGap(0, 660, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1530, 110, 350, 660));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1530, 100, 350, 660));
 
         tblCaja.setBackground(new java.awt.Color(204, 204, 204));
         tblCaja.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, java.awt.Color.white, java.awt.Color.red));
