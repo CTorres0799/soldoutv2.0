@@ -1,11 +1,11 @@
 
 package soldOutv2.GUI;
 
-import javax.swing.JTabbedPane;
+/*import javax.swing.JTabbedPane;*/
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import sun.swing.table.DefaultTableCellHeaderRenderer;
-import soldOutv2.GUI.guiMenu;
+/*import sun.swing.table.DefaultTableCellHeaderRenderer;*/
+/*import soldOutv2.GUI.guiMenu;*/
 import java.awt.Image; //pedriño
 import javax.swing.ImageIcon; //pedriño
 

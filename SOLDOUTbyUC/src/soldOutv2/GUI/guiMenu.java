@@ -1,7 +1,7 @@
 package soldOutv2.GUI;
 
 import Metodos.Conexion;
-import com.sun.xml.internal.ws.api.streaming.XMLStreamReaderFactory;
+/*import com.sun.xml.internal.ws.api.streaming.XMLStreamReaderFactory;*/
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -11,9 +11,9 @@ import javax.swing.JTable;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-import javax.swing.table.TableModel;
+/*import javax.swing.table.TableModel;*/
 import javax.swing.table.TableRowSorter;
-import javax.swing.text.TableView;
+/*import javax.swing.text.TableView;*/
 import soldOutv2.GUI.guiCaja;
 import java.awt.Image; //pedriño
 import javax.swing.ImageIcon; //pedriño
@@ -30,13 +30,11 @@ public class guiMenu extends javax.swing.JFrame {
     double Cambio; //pedriño
     String importe;
     String printTotal;
-<<<<<<< Updated upstream
+
     String printCambio;//pedriño
     
-=======
     Conexion cc = new Conexion();
     Connection con = cc.obtenerConexion();
->>>>>>> Stashed changes
 
     
     public guiMenu() {
@@ -94,12 +92,12 @@ public class guiMenu extends javax.swing.JFrame {
         tblCaja = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
+        btnCalcular1 = new rsbuttom.RSButtonMetro();
         btnTicket = new rsbuttom.RSButtonMetro();
         txfBuscador = new javax.swing.JTextField();
         btnAñadir = new rsbuttom.RSButtonMetro();
         lblDashOFF = new javax.swing.JLabel();
         lblBackground = new javax.swing.JLabel();
-        btnCalcular1 = new rsbuttom.RSButtonMetro();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1920, 1080));
@@ -496,6 +494,14 @@ public class guiMenu extends javax.swing.JFrame {
 
         pnlBackground.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1490, 320, 350, 660));
 
+        btnCalcular1.setText("Calcular");
+        btnCalcular1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCalcular1ActionPerformed(evt);
+            }
+        });
+        pnlBackground.add(btnCalcular1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 750, -1, -1));
+
         btnTicket.setText("Ticket ");
         btnTicket.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -545,14 +551,6 @@ public class guiMenu extends javax.swing.JFrame {
 
         lblBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/gui_PRINCIPAL01v2.jpg"))); // NOI18N
         pnlBackground.add(lblBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
-
-        btnCalcular1.setText("Calcular");
-        btnCalcular1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCalcular1ActionPerformed(evt);
-            }
-        });
-        pnlBackground.add(btnCalcular1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 750, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -648,6 +646,8 @@ public class guiMenu extends javax.swing.JFrame {
             platillos.push((Integer.toString(i)));
         }
     }
+    
+    //
 
 
     private void btnDashMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDashMouseClicked
@@ -749,13 +749,13 @@ public class guiMenu extends javax.swing.JFrame {
                 
                 System.out.println(total);
                 
-                //Pedriño
+                /*//Pedriño
                 Cambio = (Integer.parseInt(efectivo) - total);
                 printCambio = String.valueOf(Cambio);
                 
                 txfCambio.setText(printCambio);
                 //txfCambio.setText(Integer.toBinaryString((int) puta))
-                //hatasta aqui 
+                //hatasta aqui */
                 
                 txfTotal.setText(printTotal);
          
@@ -796,11 +796,25 @@ public class guiMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_txfSubTotalActionPerformed
 
     private void btnCalcular1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcular1ActionPerformed
-        // TODO add your handling code here:
+        String idAlimento, Nombre, Descripcion, Precio, Cantidad, efectivo;
+            double calcular = 0.0, x = 0.0, igvs = 0.0;
+            int cant = 0;
+            
+            efectivo = txfRecibi.getText();
+               //Pedriño
+        
+                Cambio = (Integer.parseInt(efectivo) - total);
+                printCambio = String.valueOf(Cambio);
+                
+                txfCambio.setText(printCambio);
+                //txfCambio.setText(Integer.toBinaryString((int) puta))
+                //hatasta aqui 
     }//GEN-LAST:event_btnCalcular1ActionPerformed
 
     private void btnTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTicketActionPerformed
-        // TODO add your handling code here:
+        /*jdfglkdjgd
+                */
+                
     }//GEN-LAST:event_btnTicketActionPerformed
 
     public static void main(String args[]) {

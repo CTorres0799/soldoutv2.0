@@ -1,6 +1,5 @@
 package soldOutv2.GUI;
 
-<<<<<<< Updated upstream
 import java.awt.Image; //pedriño
 import javax.swing.ImageIcon; //pedriño
 
@@ -8,14 +7,13 @@ import javax.swing.ImageIcon; //pedriño
  *
  * @author cristian
  */
-=======
+
 import Metodos.Conexion;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 
->>>>>>> Stashed changes
 public class guiLogin extends javax.swing.JFrame {
 
     public guiLogin() {
