@@ -17,6 +17,7 @@ import javax.swing.table.TableRowSorter;
 import soldOutv2.GUI.guiCaja;
 import java.awt.Image; //pedriño
 import javax.swing.ImageIcon; //pedriño
+import java.awt.print.*;
 
 public class guiMenu extends javax.swing.JFrame {
     //FILTRADO ALIMENTOS//
@@ -35,8 +36,22 @@ public class guiMenu extends javax.swing.JFrame {
     
     Conexion cc = new Conexion();
     Connection con = cc.obtenerConexion();
-
     
+    private String contenTicket = "  Restaurante Las Brasas Grill & Beer\n  "
+                +"     \n"
+                +"    =============================================\n"
+                +"    Cant Nombre  Descripcion    Precio    Importe\n"
+                +"    =============================================\n"
+                +"    {{tblcaja}}\n"
+                +"    =============================================\n"
+                +"    Costo:${{total}}      SubTotal{{SubTotal}}    \n" 
+                +"    Recibo: ${{Recibi}}  Cambio:${{Cambio}}       \n"
+                +"    =============================================\n"
+                +"     \n"
+                +"     \n"
+                + "       Gracias por su compra y su visita        \n"
+                +"         ***********:::::::**********";
+
     public guiMenu() {
         total = 0;
         sub_total = 0.0;
@@ -92,6 +107,8 @@ public class guiMenu extends javax.swing.JFrame {
         tblCaja = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txaTicket = new javax.swing.JTextArea();
         btnCalcular1 = new rsbuttom.RSButtonMetro();
         btnTicket = new rsbuttom.RSButtonMetro();
         txfBuscador = new javax.swing.JTextField();
@@ -481,15 +498,26 @@ public class guiMenu extends javax.swing.JFrame {
 
         jPanel3.setPreferredSize(new java.awt.Dimension(250, 500));
 
+        txaTicket.setEditable(false);
+        txaTicket.setColumns(20);
+        txaTicket.setRows(5);
+        jScrollPane1.setViewportView(txaTicket);
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 350, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 660, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 636, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pnlBackground.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1490, 320, 350, 660));
@@ -647,9 +675,16 @@ public class guiMenu extends javax.swing.JFrame {
         }
     }
     
-    //
+    //TICKET
+    private void Ticket (){
+        /*String Recibi;
+        this.contenTicket = this.contenTicket.replace("{{Recibi}}", Recibi);*/
+        txaTicket.setText(contenTicket);
+        System.out.println(contenTicket);
+       
 
-
+    }
+    
     private void btnDashMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDashMouseClicked
         dashFunctionON();
     }//GEN-LAST:event_btnDashMouseClicked
@@ -812,8 +847,7 @@ public class guiMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCalcular1ActionPerformed
 
     private void btnTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTicketActionPerformed
-        /*jdfglkdjgd
-                */
+        Ticket();
                 
     }//GEN-LAST:event_btnTicketActionPerformed
 
@@ -864,6 +898,7 @@ public class guiMenu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel lblBackground;
@@ -886,6 +921,7 @@ public class guiMenu extends javax.swing.JFrame {
     private javax.swing.JRadioButton rbnTodoDia;
     private javax.swing.JTable tblCaja;
     private javax.swing.JTable tblKalis;
+    private javax.swing.JTextArea txaTicket;
     private javax.swing.JTextField txfBuscador;
     private javax.swing.JTextField txfCambio;
     private javax.swing.JTextField txfCantidad;

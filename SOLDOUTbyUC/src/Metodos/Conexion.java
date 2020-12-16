@@ -2,14 +2,16 @@ package Metodos;
 
 //import soldoutV1.guiSplashscreen;
 import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
 //import soldoutV1.pnlUsuarios;
 //import soldoutV1.cajero;
 
 public class Conexion {
     private String nombreBd = "soldoutv2";
     private String usuario = "root";
-    private String password = "@cf0709-1415";
-    private String url = "jdbc:mysql://localhost:3306/"+nombreBd+"?useUnicode=true&use"
+    private String password = "CruzYpedro523";
+    private String url = "jdbc:mysql://localhost:3306/"+nombreBd+";/*?useUnicode=true&use"
     + "JBDCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&"
             +"serverTimezone=UTC";
     
