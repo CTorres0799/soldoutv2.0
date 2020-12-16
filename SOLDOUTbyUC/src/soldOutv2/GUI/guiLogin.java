@@ -2,15 +2,15 @@ package soldOutv2.GUI;
 
 import java.awt.Image; //pedriño
 import javax.swing.ImageIcon; //pedriño
-
-/**
- *
- * @author cristian
- */
-
 import Metodos.Conexion;
+import Metodos.usuarios;
+import static com.sun.imageio.plugins.common.LZWStringTable.hash;
+import com.sun.xml.internal.ws.client.ContentNegotiation;
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 
@@ -23,34 +23,35 @@ public class guiLogin extends javax.swing.JFrame {
     }
 
     Conexion cc = new Conexion();
-    Connection con = cc.obtenerConexion();
-
+    usuarios uss = new usuarios();
 
     public void validarUsuario() {
-        
-    int resultado = 0;
-    
+        Connection con = cc.obtenerConexion();
+        int resultado = 0;
+        String pass = String.valueOf(pfdContraseña.getPassword());
+        String usuario = txfUsuario.getText();
+        String SQL = "select * from usuarios where nombreUsuario = '" + usuario + "' and contraseña= '" + pass + "' ";
+
         try {
-
-            String usuario = txfUsuario.getText();
-            String password = String.valueOf(pfdContraseña.getPassword());
-            String sql = " select * from usuarios where nombreUsuario = ' " +usuario+ " '  and contraseña = ' " + password + " ' ";
-
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(sql);
+            ResultSet rs = st.executeQuery(SQL);
+
             if (rs.next()) {
                 resultado = 1;
+
                 if (resultado == 1) {
 
-                    JOptionPane.showMessageDialog(null, "Bienvenido" + usuario + " :D ");
-                    guiPrincipal01 opnPrincipal = new guiPrincipal01();
-                    opnPrincipal.setVisible(true);
-                   dispose();
-                } else {
-                    JOptionPane.showMessageDialog(null, " Lo lamento" + usuario
-                            + " tus credenciales son incorrectas :( intentalo de nuevo ", " Error: Usuario u/o Clave, incorrectos ",
-                            JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Bienvenido a SOLDOUTv2.0 " + "\n" + " Usuario: " + usuario);
+                    guiPrincipal01 extPrin = new guiPrincipal01();
+                    extPrin.setVisible(true);
+                    this.dispose();
+
                 }
+
+            } else {
+                JOptionPane.showMessageDialog(null, " Lo lamento " + usuario
+                        + " tus credenciales son incorrectas :( " + " intentalo de nuevo ", " Error: Usuario u/o Clave, incorrectos ",
+                        JOptionPane.WARNING_MESSAGE);
             }
 
         } catch (Exception e) {
@@ -58,9 +59,71 @@ public class guiLogin extends javax.swing.JFrame {
                     + " contacte a su supervisor ", " Error Interno 07EC4TCH ",
                     JOptionPane.ERROR_MESSAGE);
         }
-
     }
 
+//    public boolean loginUsuario(usuarios usr) {
+//        PreparedStatement ps  = null;
+//        ResultSet rs = null;
+//        Connection con = cc.obtenerConexion();
+//        
+//        String sql = "SELECT idUsuario, nombreUsuario, contraseña, idRol   FROM usuarios WHERE nombreUsuario = ?";
+//        
+//        try {
+//            ps = con.prepareStatement(sql);
+//            ps.setString(1, usr.getNombreUsuario());
+//            rs = ps.executeQuery();
+//            
+//            if (rs.next()) 
+//            {
+//                if (usr.getContraseña().equals(rs.getString(3))) {
+//                    usr.setIdRol(rs.getInt(1));
+//                    usr.setNombreUsuario(rs.getString(2));
+//                    usr.setIdRol(rs.getInt(4));
+//                    return true;
+//                } else {
+//                    return false; 
+//                }    
+//                //return rs.getInt(1);
+//            }
+//        } catch (SQLException ex) {
+//            //Logger.getLogger()
+//        }
+//        return false;
+//    }
+//    public void validarUsuario() {
+//        
+//    int resultado = 0;
+//    
+//        try {
+//
+//            String usuario = txfUsuario.getText();
+//            String password = String.valueOf(pfdContraseña.getPassword());
+//            String sql = " select * from usuarios where nombreUsuario = ' " +usuario+ " '  and contraseña = ' " + password + " ' ";
+//
+//            Statement st = con.createStatement();
+//            ResultSet rs = st.executeQuery(sql);
+//            if (rs.next()) {
+//                resultado = 1;
+//                if (resultado == 1) {
+//
+//                    JOptionPane.showMessageDialog(null, "Bienvenido" + usuario + " :D ");
+//                    guiPrincipal01 opnPrincipal = new guiPrincipal01();
+//                    opnPrincipal.setVisible(true);
+//                   dispose();
+//                } else {
+//                    JOptionPane.showMessageDialog(null, " Lo lamento" + usuario
+//                            + " tus credenciales son incorrectas :( intentalo de nuevo ", " Error: Usuario u/o Clave, incorrectos ",
+//                            JOptionPane.WARNING_MESSAGE);
+//                }
+//            }
+//
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(null, " Error:" + e.getMessage()
+//                    + " contacte a su supervisor ", " Error Interno 07EC4TCH ",
+//                    JOptionPane.ERROR_MESSAGE);
+//        }
+//
+//    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -96,6 +159,11 @@ public class guiLogin extends javax.swing.JFrame {
         txfUsuario.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txfUsuario.setCaretColor(new java.awt.Color(204, 0, 51));
         txfUsuario.setSelectionColor(new java.awt.Color(204, 0, 51));
+        txfUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txfUsuarioKeyPressed(evt);
+            }
+        });
         pnlBackground.add(txfUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 290, 210, 30));
 
         pfdContraseña.setBackground(new java.awt.Color(0, 0, 0));
@@ -104,6 +172,11 @@ public class guiLogin extends javax.swing.JFrame {
         pfdContraseña.setToolTipText("");
         pfdContraseña.setCaretColor(new java.awt.Color(204, 0, 51));
         pfdContraseña.setSelectionColor(new java.awt.Color(204, 0, 51));
+        pfdContraseña.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                pfdContraseñaKeyPressed(evt);
+            }
+        });
         pnlBackground.add(pfdContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 340, 210, 30));
 
         rSButtonMetro1.setBackground(new java.awt.Color(0, 0, 0));
@@ -138,12 +211,41 @@ public class guiLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void rSButtonMetro1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonMetro1ActionPerformed
-        validarUsuario();
+
+        if (txfUsuario.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, " Campos vacios :/, intentalo de nuevo ", " Error: USUARIO WEY ",
+                    JOptionPane.ERROR_MESSAGE);
+        } else {
+            validarUsuario();
+        }
+
     }//GEN-LAST:event_rSButtonMetro1ActionPerformed
 
     private void rSButtonMetro2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonMetro2ActionPerformed
         dispose();
     }//GEN-LAST:event_rSButtonMetro2ActionPerformed
+
+    private void pfdContraseñaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pfdContraseñaKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (txfUsuario.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, " Campos vacios :/, intentalo de nuevo ", " Error: USUARIO WEY ",
+                        JOptionPane.ERROR_MESSAGE);
+            } else {
+                validarUsuario();
+            }
+        }
+    }//GEN-LAST:event_pfdContraseñaKeyPressed
+
+    private void txfUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txfUsuarioKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (txfUsuario.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, " Campos vacios :/, intentalo de nuevo ", " Error: USUARIO WEY ",
+                        JOptionPane.ERROR_MESSAGE);
+            } else {
+                validarUsuario();
+            }
+        }
+    }//GEN-LAST:event_txfUsuarioKeyPressed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
