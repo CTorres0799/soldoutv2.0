@@ -172,11 +172,6 @@ public class guiLogin extends javax.swing.JFrame {
         pfdContraseña.setToolTipText("");
         pfdContraseña.setCaretColor(new java.awt.Color(204, 0, 51));
         pfdContraseña.setSelectionColor(new java.awt.Color(204, 0, 51));
-        pfdContraseña.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pfdContraseñaActionPerformed(evt);
-            }
-        });
         pfdContraseña.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 pfdContraseñaKeyPressed(evt);
@@ -251,10 +246,6 @@ public class guiLogin extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_txfUsuarioKeyPressed
-
-    private void pfdContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pfdContraseñaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pfdContraseñaActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
